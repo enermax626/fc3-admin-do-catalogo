@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fullcycle.admin.catalogo.application.category.delete.DeleteCategoryUseCaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-07T18:25:50" hostname="MURILO-G2022" time="0.01">
+  <properties/>
+  <testcase name="givenAnInvalidId_whenCallDeleteCategory_shouldBeOk()" classname="com.fullcycle.admin.catalogo.application.category.delete.DeleteCategoryUseCaseTest" time="0.006"/>
+  <testcase name="givenAValidCommand_whenCallDeleteCategory_shouldDelete()" classname="com.fullcycle.admin.catalogo.application.category.delete.DeleteCategoryUseCaseTest" time="0.002"/>
+  <testcase name="givenAValidId_whenGatewayThrowsError_shouldReturnException()" classname="com.fullcycle.admin.catalogo.application.category.delete.DeleteCategoryUseCaseTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

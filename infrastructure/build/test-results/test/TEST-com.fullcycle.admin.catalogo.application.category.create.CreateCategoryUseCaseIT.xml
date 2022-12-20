@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-12-20T19:00:02" hostname="MURILO-G2022" time="0.126">
+  <properties/>
+  <testcase name="givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT" time="0.084"/>
+  <testcase name="givenAGatewayUnexpectedException_whenCallsCreateCategory_shouldThrowThisError()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT" time="0.015"/>
+  <testcase name="givenAValidInactiveCommand_whenCallsCreateCategory_shouldReturnCategoryId()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT" time="0.007"/>
+  <testcase name="givenAnEmptyCommandName_whenCallsCreateCategory_shouldThrowAnError()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT" time="0.017"/>
+  <system-out><![CDATA[2022-12-20 16:00:00.937  INFO 22940 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT], using SpringBootContextLoader
+2022-12-20 16:00:00.938  INFO 22940 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseIT]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-12-20 16:00:00.941  INFO 22940 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-12-20 16:00:00.941  INFO 22940 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4b8466c2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2044f708, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4bb4cc8c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@18bab95b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@70e07ef8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@771b2b5b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1aa64998, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@571b4bf6, org.springframework.test.context.event.EventPublishingTestExecutionListener@24ffe853, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@a904e64, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@22d23c27, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2f1b8770, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@74fd5fb0, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@7c16cc25, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4f96e484]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.7)
+
+2022-12-20 16:00:00.964  INFO 22940 --- [    Test worker] c.f.a.c.a.c.c.CreateCategoryUseCaseIT    : Starting CreateCategoryUseCaseIT using Java 17.0.5 on MURILO-G2022 with PID 22940 (started by murilo in C:\Users\muril\OneDrive\Desktop\estudando\spring\full-cycle\fc3-admin-do-catalogo\infrastructure)
+2022-12-20 16:00:00.964  INFO 22940 --- [    Test worker] c.f.a.c.a.c.c.CreateCategoryUseCaseIT    : The following 1 profile is active: "test"
+2022-12-20 16:00:01.131  INFO 22940 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-20 16:00:01.143  INFO 22940 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 1 JPA repository interfaces.
+2022-12-20 16:00:01.246  WARN 22940 --- [    Test worker] com.zaxxer.hikari.HikariConfig           : master - idleTimeout is close to or more than maxLifetime, disabling it.
+2022-12-20 16:00:01.247  INFO 22940 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : master - Starting...
+2022-12-20 16:00:01.247  INFO 22940 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : master - Start completed.
+2022-12-20 16:00:01.248  INFO 22940 --- [    Test worker] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 8.0.5 by Redgate
+2022-12-20 16:00:01.248  INFO 22940 --- [    Test worker] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:h2:mem:adm_videos_test (H2 1.4)
+2022-12-20 16:00:01.255  INFO 22940 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.005s)
+2022-12-20 16:00:01.263  INFO 22940 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2022-12-20 16:00:01.265  INFO 22940 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2022-12-20 16:00:01.322  INFO 22940 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-20 16:00:01.329  INFO 22940 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2022-12-20 16:00:01.346  INFO 22940 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-20 16:00:01.347  INFO 22940 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-20 16:00:01.864  INFO 22940 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2'. Database available at 'jdbc:h2:mem:adm_videos_test'
+2022-12-20 16:00:02.321  INFO 22940 --- [    Test worker] c.f.a.c.a.c.c.CreateCategoryUseCaseIT    : Started CreateCategoryUseCaseIT in 1.378 seconds (JVM running for 7.711)
+Hibernate: select categoryjp0_.id as id1_0_, categoryjp0_.active as active2_0_, categoryjp0_.created_at as created_3_0_, categoryjp0_.deleted_at as deleted_4_0_, categoryjp0_.description as descript5_0_, categoryjp0_.name as name6_0_, categoryjp0_.updated_at as updated_7_0_ from category categoryjp0_
+Hibernate: select count(*) as col_0_0_ from category categoryjp0_
+Hibernate: select categoryjp0_.id as id1_0_0_, categoryjp0_.active as active2_0_0_, categoryjp0_.created_at as created_3_0_0_, categoryjp0_.deleted_at as deleted_4_0_0_, categoryjp0_.description as descript5_0_0_, categoryjp0_.name as name6_0_0_, categoryjp0_.updated_at as updated_7_0_0_ from category categoryjp0_ where categoryjp0_.id=?
+Hibernate: insert into category (active, created_at, deleted_at, description, name, updated_at, id) values (?, ?, ?, ?, ?, ?, ?)
+Hibernate: select count(*) as col_0_0_ from category categoryjp0_
+Hibernate: select categoryjp0_.id as id1_0_0_, categoryjp0_.active as active2_0_0_, categoryjp0_.created_at as created_3_0_0_, categoryjp0_.deleted_at as deleted_4_0_0_, categoryjp0_.description as descript5_0_0_, categoryjp0_.name as name6_0_0_, categoryjp0_.updated_at as updated_7_0_0_ from category categoryjp0_ where categoryjp0_.id=?
+Hibernate: select categoryjp0_.id as id1_0_, categoryjp0_.active as active2_0_, categoryjp0_.created_at as created_3_0_, categoryjp0_.deleted_at as deleted_4_0_, categoryjp0_.description as descript5_0_, categoryjp0_.name as name6_0_, categoryjp0_.updated_at as updated_7_0_ from category categoryjp0_
+Hibernate: delete from category where id=?
+Hibernate: select categoryjp0_.id as id1_0_, categoryjp0_.active as active2_0_, categoryjp0_.created_at as created_3_0_, categoryjp0_.deleted_at as deleted_4_0_, categoryjp0_.description as descript5_0_, categoryjp0_.name as name6_0_, categoryjp0_.updated_at as updated_7_0_ from category categoryjp0_
+Hibernate: select count(*) as col_0_0_ from category categoryjp0_
+Hibernate: select categoryjp0_.id as id1_0_0_, categoryjp0_.active as active2_0_0_, categoryjp0_.created_at as created_3_0_0_, categoryjp0_.deleted_at as deleted_4_0_0_, categoryjp0_.description as descript5_0_0_, categoryjp0_.name as name6_0_0_, categoryjp0_.updated_at as updated_7_0_0_ from category categoryjp0_ where categoryjp0_.id=?
+Hibernate: insert into category (active, created_at, deleted_at, description, name, updated_at, id) values (?, ?, ?, ?, ?, ?, ?)
+Hibernate: select count(*) as col_0_0_ from category categoryjp0_
+Hibernate: select categoryjp0_.id as id1_0_0_, categoryjp0_.active as active2_0_0_, categoryjp0_.created_at as created_3_0_0_, categoryjp0_.deleted_at as deleted_4_0_0_, categoryjp0_.description as descript5_0_0_, categoryjp0_.name as name6_0_0_, categoryjp0_.updated_at as updated_7_0_0_ from category categoryjp0_ where categoryjp0_.id=?
+Hibernate: select categoryjp0_.id as id1_0_, categoryjp0_.active as active2_0_, categoryjp0_.created_at as created_3_0_, categoryjp0_.deleted_at as deleted_4_0_, categoryjp0_.description as descript5_0_, categoryjp0_.name as name6_0_, categoryjp0_.updated_at as updated_7_0_ from category categoryjp0_
+Hibernate: delete from category where id=?
+Hibernate: select count(*) as col_0_0_ from category categoryjp0_
+Hibernate: select count(*) as col_0_0_ from category categoryjp0_
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

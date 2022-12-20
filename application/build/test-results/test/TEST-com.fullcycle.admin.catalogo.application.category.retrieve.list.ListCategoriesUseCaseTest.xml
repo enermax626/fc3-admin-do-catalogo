@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fullcycle.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-07T18:25:50" hostname="MURILO-G2022" time="0.021">
+  <properties/>
+  <testcase name="givenAValidQuery_whenCallsListCategories_thenShouldReturnEmptyCategories()" classname="com.fullcycle.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCaseTest" time="0.013"/>
+  <testcase name="givenAValidQuery_whenCallsListCategories_thenShouldReturnCategories()" classname="com.fullcycle.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCaseTest" time="0.006"/>
+  <testcase name="givenAValidQuery_whenGatewayThrowsException_thenShouldReturnException()" classname="com.fullcycle.admin.catalogo.application.category.retrieve.list.ListCategoriesUseCaseTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

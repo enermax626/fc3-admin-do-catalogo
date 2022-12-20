@@ -1,0 +1,1 @@
+DEOP TABLE category;

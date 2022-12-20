@@ -1,0 +1,12 @@
+server:
+  port: 8081
+  undertow:
+    threads:
+      worker: 64
+      io: 4
+
+mysql:
+  url: localhost:3306
+  username: root
+  password: 123456
+  schema: adm_videos
