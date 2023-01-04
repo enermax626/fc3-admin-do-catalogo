@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">5</div>
+<div class="counter">1</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.215s</div>
+<div class="counter">0.095s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,28 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId()</td>
-<td class="success">0.166s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenAValidId_whenCallsGetCategoryById_shouldReturnACategory()</td>
-<td class="success">0.014s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenAnInvalidId_whenCallsGetCategoryById_shouldReturnNotFound()</td>
-<td class="success">0.012s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenAnNullCommandName_whenCallsCreateCategory_shouldReturnNotificationError()</td>
-<td class="success">0.014s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">givenAnNullCommandName_whenCallsCreateCategory_shouldThrowADomainException()</td>
-<td class="success">0.009s</td>
+<td class="success">givenAValidId_whenCallsDeleteCategoryById_shouldDeleteCategory()</td>
+<td class="success">0.095s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -107,12 +87,20 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2022-12-20 16:00:06.669  INFO 22940 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest], using SpringBootContextLoader
-2022-12-20 16:00:06.669  INFO 22940 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2022-12-20 16:00:06.669  INFO 22940 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: CategoryAPITest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2022-12-20 16:00:06.677  INFO 22940 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.fullcycle.admin.catalogo.infrastructure.Main for test class com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest
-2022-12-20 16:00:06.678  INFO 22940 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2022-12-20 16:00:06.678  INFO 22940 --- [    Test worker] .b.t.a.w.s.WebMvcTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@b0bd567, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7f8586f9, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@248227db, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@fb69ab1, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5ac3c6cd, org.springframework.test.context.support.DirtiesContextTestExecutionListener@9223122, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3c2b7322, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7731504, org.springframework.test.context.event.EventPublishingTestExecutionListener@43c25e89, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5b71ccf2, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3c2406dd, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@23e0ef68, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7207cb8b, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@27449f65, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3b4a77be]
+<pre>08:32:05.577 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+08:32:05.585 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+08:32:05.617 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest] from class [org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper]
+08:32:05.626 [Test worker] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest], using SpringBootContextLoader
+08:32:05.629 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: class path resource [com/fullcycle/admin/catalogo/infrastructure/category/api/CategoryAPITest-context.xml] does not exist
+08:32:05.630 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: class path resource [com/fullcycle/admin/catalogo/infrastructure/category/api/CategoryAPITestContext.groovy] does not exist
+08:32:05.630 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: no resource found for suffixes {-context.xml, Context.groovy}.
+08:32:05.630 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: CategoryAPITest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:32:05.736 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\muril\OneDrive\Desktop\estudando\spring\full-cycle\fc3-admin-do-catalogo\infrastructure\build\classes\java\main\com\fullcycle\admin\catalogo\infrastructure\Main.class]
+08:32:05.737 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.fullcycle.admin.catalogo.infrastructure.Main for test class com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest
+08:32:05.739 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - @TestExecutionListeners is not present for class [com.fullcycle.admin.catalogo.infrastructure.category.api.CategoryAPITest]: using defaults.
+08:32:05.740 [Test worker] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+08:32:05.753 [Test worker] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@63648ee9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@68d6972f, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@45be7cd5, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7651218e, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3185fa6b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6d366c9b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5b58ed3c, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@24faea88, org.springframework.test.context.event.EventPublishingTestExecutionListener@3a320ade, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@64beebb7, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7813cb11, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@bcec031, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@21005f6c, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@32f0fba8, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@545de5a4]
+08:32:05.761 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@25ddbbbb testClass = CategoryAPITest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1536602f testClass = CategoryAPITest, locations = '{}', classes = '{class com.fullcycle.admin.catalogo.infrastructure.Main}', contextInitializerClasses = '[]', activeProfiles = '{test}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@4aa83f4f, org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@61e94def, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@6bad37b1, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@73e86f2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@e84a8e1, [ImportsContextCustomizer@4ebea12c key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration, org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@19553973, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4c4748bf, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@32ed24e0, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@0], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -122,126 +110,15 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.6.7)
 
-2022-12-20 16:00:06.697  INFO 22940 --- [    Test worker] c.f.a.c.i.category.api.CategoryAPITest   : Starting CategoryAPITest using Java 17.0.5 on MURILO-G2022 with PID 22940 (started by murilo in C:\Users\muril\OneDrive\Desktop\estudando\spring\full-cycle\fc3-admin-do-catalogo\infrastructure)
-2022-12-20 16:00:06.698  INFO 22940 --- [    Test worker] c.f.a.c.i.category.api.CategoryAPITest   : The following 1 profile is active: &quot;test&quot;
-2022-12-20 16:00:07.088  INFO 22940 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2022-12-20 16:00:07.089  INFO 22940 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2022-12-20 16:00:07.089  INFO 22940 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2022-12-20 16:00:07.097  INFO 22940 --- [    Test worker] c.f.a.c.i.category.api.CategoryAPITest   : Started CategoryAPITest in 0.417 seconds (JVM running for 12.487)
+2023-01-04 08:32:06.109  INFO 17952 --- [    Test worker] c.f.a.c.i.category.api.CategoryAPITest   : Starting CategoryAPITest using Java 17.0.5 on MURILO-G2022 with PID 17952 (started by murilo in C:\Users\muril\OneDrive\Desktop\estudando\spring\full-cycle\fc3-admin-do-catalogo\infrastructure)
+2023-01-04 08:32:06.109  INFO 17952 --- [    Test worker] c.f.a.c.i.category.api.CategoryAPITest   : The following 1 profile is active: &quot;test&quot;
+2023-01-04 08:32:07.687  INFO 17952 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-01-04 08:32:07.688  INFO 17952 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-01-04 08:32:07.689  INFO 17952 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-01-04 08:32:07.712  INFO 17952 --- [    Test worker] c.f.a.c.i.category.api.CategoryAPITest   : Started CategoryAPITest in 1.918 seconds (JVM running for 2.774)
 
 MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /categories
-       Parameters = {}
-          Headers = [Content-Type:&quot;application/json;charset=UTF-8&quot;, Content-Length:&quot;77&quot;]
-             Body = {&quot;name&quot;:&quot;Filmes&quot;,&quot;description&quot;:&quot;A categoria mais assistida&quot;,&quot;is_active&quot;:true}
-    Session Attrs = {}
-
-Handler:
-             Type = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController
-           Method = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController#createCategory(CreateCategoryApiInput)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 201
-    Error message = null
-          Headers = [Location:&quot;/categories/123&quot;, Content-Type:&quot;application/json&quot;]
-     Content type = application/json
-             Body = {&quot;id&quot;:&quot;123&quot;}
-    Forwarded URL = null
-   Redirected URL = /categories/123
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /categories
-       Parameters = {}
-          Headers = [Content-Type:&quot;application/json;charset=UTF-8&quot;, Content-Length:&quot;73&quot;]
-             Body = {&quot;name&quot;:null,&quot;description&quot;:&quot;A categoria mais assistida&quot;,&quot;is_active&quot;:true}
-    Session Attrs = {}
-
-Handler:
-             Type = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController
-           Method = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController#createCategory(CreateCategoryApiInput)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 422
-    Error message = null
-          Headers = [Content-Type:&quot;application/json&quot;]
-     Content type = application/json
-             Body = {&quot;errors&quot;:[{&quot;message&quot;:&quot;'name' should not be null&quot;}]}
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = GET
-      Request URI = /categories/d66e0c50-33b8-4fa3-8ddf-783309febc47
-       Parameters = {}
-          Headers = []
-             Body = null
-    Session Attrs = {}
-
-Handler:
-             Type = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController
-           Method = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController#getById(String)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = null
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 200
-    Error message = null
-          Headers = [Content-Type:&quot;application/json&quot;]
-     Content type = application/json
-             Body = {&quot;id&quot;:&quot;d66e0c50-33b8-4fa3-8ddf-783309febc47&quot;,&quot;name&quot;:&quot;Filmes&quot;,&quot;description&quot;:&quot;A categoria mais assistida&quot;,&quot;is_active&quot;:true,&quot;created_at&quot;:&quot;2022-12-20T19:00:07.282202300Z&quot;,&quot;updated_at&quot;:&quot;2022-12-20T19:00:07.282202300Z&quot;,&quot;deleted_at&quot;:null}
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = GET
+      HTTP Method = DELETE
       Request URI = /categories/123
        Parameters = {}
           Headers = []
@@ -250,14 +127,14 @@ MockHttpServletRequest:
 
 Handler:
              Type = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController
-           Method = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController#getById(String)
+           Method = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController#deleteById(String)
 
 Async:
     Async started = false
      Async result = null
 
 Resolved Exception:
-             Type = com.fullcycle.admin.catalogo.domain.exceptions.NotFoundException
+             Type = null
 
 ModelAndView:
         View name = null
@@ -268,48 +145,11 @@ FlashMap:
        Attributes = null
 
 MockHttpServletResponse:
-           Status = 404
+           Status = 204
     Error message = null
-          Headers = [Content-Type:&quot;application/json&quot;]
-     Content type = application/json
-             Body = {&quot;message&quot;:&quot;Category with ID 123 was not found&quot;,&quot;errors&quot;:[]}
-    Forwarded URL = null
-   Redirected URL = null
-          Cookies = []
-
-MockHttpServletRequest:
-      HTTP Method = POST
-      Request URI = /categories
-       Parameters = {}
-          Headers = [Content-Type:&quot;application/json;charset=UTF-8&quot;, Content-Length:&quot;73&quot;]
-             Body = {&quot;name&quot;:null,&quot;description&quot;:&quot;A categoria mais assistida&quot;,&quot;is_active&quot;:true}
-    Session Attrs = {}
-
-Handler:
-             Type = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController
-           Method = com.fullcycle.admin.catalogo.infrastructure.api.controllers.CategoryController#createCategory(CreateCategoryApiInput)
-
-Async:
-    Async started = false
-     Async result = null
-
-Resolved Exception:
-             Type = com.fullcycle.admin.catalogo.domain.exceptions.DomainException
-
-ModelAndView:
-        View name = null
-             View = null
-            Model = null
-
-FlashMap:
-       Attributes = null
-
-MockHttpServletResponse:
-           Status = 422
-    Error message = null
-          Headers = [Content-Type:&quot;application/json&quot;]
-     Content type = application/json
-             Body = {&quot;message&quot;:&quot;'name' should not be null&quot;,&quot;errors&quot;:[{&quot;message&quot;:&quot;'name' should not be null&quot;}]}
+          Headers = []
+     Content type = null
+             Body = 
     Forwarded URL = null
    Redirected URL = null
           Cookies = []
@@ -324,7 +164,7 @@ MockHttpServletResponse:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.4</a> at 20 de dez. de 2022 16:00:07</p>
+<a href="http://www.gradle.org">Gradle 7.4</a> at 4 de jan. de 2023 08:32:07</p>
 </div>
 </div>
 </body>

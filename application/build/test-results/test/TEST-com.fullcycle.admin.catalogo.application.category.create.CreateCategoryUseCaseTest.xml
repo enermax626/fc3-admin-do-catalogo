@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-12-07T18:25:49" hostname="MURILO-G2022" time="0.431">
+<testsuite name="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-01-04T11:17:45" hostname="MURILO-G2022" time="0.026">
   <properties/>
-  <testcase name="givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.416"/>
-  <testcase name="givenAGatewayUnexpectedException_whenCallsCreateCategory_shouldThrowThisError()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.007"/>
-  <testcase name="givenAValidInactiveCommand_whenCallsCreateCategory_shouldReturnCategoryId()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.002"/>
-  <testcase name="givenAnEmptyCommandName_whenCallsCreateCategory_shouldThrowAnError()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.005"/>
+  <testcase name="givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.012"/>
+  <testcase name="givenAGatewayUnexpectedException_whenCallsCreateCategory_shouldThrowThisError()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.003"/>
+  <testcase name="givenAValidInactiveCommand_whenCallsCreateCategory_shouldReturnCategoryId()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.001"/>
+  <testcase name="givenAnEmptyCommandName_whenCallsCreateCategory_shouldThrowAnError()" classname="com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCaseTest" time="0.008"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

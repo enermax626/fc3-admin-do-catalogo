@@ -3,12 +3,17 @@ package com.fullcycle.admin.catalogo.infrastructure.api.controllers;
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryCommand;
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryOutput;
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCase;
+import com.fullcycle.admin.catalogo.application.category.delete.DeleteCategoryUseCase;
 import com.fullcycle.admin.catalogo.application.category.retreive.get.GetCategoryByIdUseCase;
+import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryCommand;
+import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryOutput;
+import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryUseCase;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
 import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import com.fullcycle.admin.catalogo.infrastructure.api.CategoryAPI;
 import com.fullcycle.admin.catalogo.infrastructure.category.models.CategoryApiOutput;
 import com.fullcycle.admin.catalogo.infrastructure.category.models.CreateCategoryApiInput;
+import com.fullcycle.admin.catalogo.infrastructure.category.models.UpdateCategoryApiInput;
 import com.fullcycle.admin.catalogo.infrastructure.category.presenters.CategoryApiPresenter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.net.URI;
@@ -26,10 +31,40 @@ public class CategoryController implements CategoryAPI {
 
   private final GetCategoryByIdUseCase getCategoryByIdUseCase;
 
+  private final UpdateCategoryUseCase updateCategoryUseCase;
+
+  private final DeleteCategoryUseCase deleteCategoryUseCase;
+
   public CategoryController(CreateCategoryUseCase createCategoryUseCase,
-      GetCategoryByIdUseCase getCategoryByIdUseCase) {
+      GetCategoryByIdUseCase getCategoryByIdUseCase, UpdateCategoryUseCase updateCategoryUseCase,
+      DeleteCategoryUseCase deleteCategoryUseCase) {
     this.createCategoryUseCase = createCategoryUseCase;
     this.getCategoryByIdUseCase = getCategoryByIdUseCase;
+    this.updateCategoryUseCase = updateCategoryUseCase;
+    this.deleteCategoryUseCase = deleteCategoryUseCase;
+  }
+
+  @Override
+  public ResponseEntity<?> updateById(String id, UpdateCategoryApiInput anInput) {
+
+    final var anCommand =
+        UpdateCategoryCommand.with(
+            id,
+            anInput.name(),
+            anInput.description(),
+            Objects.isNull(anInput.active()) ? true : anInput.active());
+
+    Function<Notification, ResponseEntity<?>> onError = notification ->
+        ResponseEntity.unprocessableEntity().body(notification);
+
+    Function<UpdateCategoryOutput, ResponseEntity<?>> onSucess = ResponseEntity::ok;
+
+    return updateCategoryUseCase.execute(anCommand).fold(onError,onSucess);
+  }
+
+  @Override
+  public void deleteById(String id) {
+    deleteCategoryUseCase.execute(id);
   }
 
   @Override

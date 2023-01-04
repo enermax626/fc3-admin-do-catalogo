@@ -10,4 +10,8 @@ public record UpdateCategoryOutput(
     public static UpdateCategoryOutput from(final Category aCategory){
         return new UpdateCategoryOutput(aCategory.getId());
     }
+
+    public static UpdateCategoryOutput from(final String aCategoryId){
+        return new UpdateCategoryOutput(CategoryId.from(aCategoryId));
+    }
 }

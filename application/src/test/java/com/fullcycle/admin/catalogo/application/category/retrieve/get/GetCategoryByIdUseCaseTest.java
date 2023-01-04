@@ -73,7 +73,7 @@ public class GetCategoryByIdUseCaseTest {
                 assertThrows(DomainException.class, () -> useCase.execute(expectedId.getValue()));
 
 
-        assertEquals(expectedErrorMessage, domainException.getErrors().get(0).message());
+        assertEquals(expectedErrorMessage, domainException.getMessage());
 
         verify(categoryGateway).findById(eq(expectedId));
     }
