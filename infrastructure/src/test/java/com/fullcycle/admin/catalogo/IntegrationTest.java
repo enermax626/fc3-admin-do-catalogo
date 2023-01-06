@@ -1,6 +1,6 @@
 package com.fullcycle.admin.catalogo;
 
-import com.fullcycle.admin.catalogo.infrastructure.category.persistence.configuration.WebServerConfig;
+import com.fullcycle.admin.catalogo.infrastructure.configuration.WebServerConfig;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@ActiveProfiles("test")
+@ActiveProfiles("test-integration")
 @SpringBootTest(classes = WebServerConfig.class )
 @ExtendWith(MySQLCleanUpExtension.class)
 public @interface IntegrationTest {

@@ -54,7 +54,9 @@ public interface CategoryAPI {
   })
   ResponseEntity<?> createCategory(@RequestBody CreateCategoryApiInput anInput);
 
-  @GetMapping
+  @GetMapping(
+      produces = MediaType.APPLICATION_JSON_VALUE
+  )
   @Operation(summary = "List categories paginated")
   @ApiResponses({
       @ApiResponse(responseCode = "200", description = "Listed successfully"),

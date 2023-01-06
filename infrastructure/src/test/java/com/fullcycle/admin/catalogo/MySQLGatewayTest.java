@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@ActiveProfiles("test")
+@ActiveProfiles("test-integration")
 @ComponentScan(
     basePackages = "com.fullcycle.admin.catalogo",
     includeFilters = {

@@ -3,23 +3,16 @@ package com.fullcycle.admin.catalogo.application.category.create;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import com.fullcycle.admin.catalogo.IntegrationTest;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
 import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
-import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
-import java.util.Objects;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
@@ -43,12 +36,12 @@ public class CreateCategoryUseCaseIT {
 
     assertEquals(0, categoryRepository.count());
 
-    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription, expectedIsActive);
+    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription,
+        expectedIsActive);
 
     final CreateCategoryOutput actualOutput = useCase.execute(aCommand).get();
 
     assertEquals(1, categoryRepository.count());
-
 
     assertNotNull(actualOutput);
     assertNotNull(actualOutput.id());
@@ -70,20 +63,19 @@ public class CreateCategoryUseCaseIT {
     final var expectedDescription = "A categoria mais assistida";
     final var expectedIsActive = true;
 
-    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription, expectedIsActive);
+    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription,
+        expectedIsActive);
 
     assertEquals(0, categoryRepository.count());
-
 
     Notification notification = useCase.execute(aCommand).getLeft();
 
     assertEquals(0, categoryRepository.count());
 
-
     assertEquals(1, notification.getErrors().size());
     assertEquals("'name' should not be empty", notification.getErrors().get(0).message());
 
-    verify(categoryGateway,times(0)).create(any());
+    verify(categoryGateway, times(0)).create(any());
 
   }
 
@@ -93,9 +85,9 @@ public class CreateCategoryUseCaseIT {
     final var expectedDescription = "A categoria mais assistida";
     final var expectedIsActive = false;
 
-    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription, expectedIsActive);
+    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription,
+        expectedIsActive);
     assertEquals(0, categoryRepository.count());
-
 
     final var actualOutput = useCase.execute(aCommand).get();
 
@@ -122,7 +114,8 @@ public class CreateCategoryUseCaseIT {
     final var expectedDescription = "A categoria mais assistida";
     final var expectedIsActive = false;
 
-    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription, expectedIsActive);
+    final var aCommand = CreateCategoryCommand.with(expectedName, expectedDescription,
+        expectedIsActive);
 
     doThrow(new IllegalStateException("test")).when(categoryGateway).create(any());
 

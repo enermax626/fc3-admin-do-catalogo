@@ -1,6 +1,8 @@
-package com.fullcycle.admin.catalogo.infrastructure.category.api;
+package com.fullcycle.admin.catalogo.infrastructure.api;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -21,18 +23,22 @@ import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUs
 import com.fullcycle.admin.catalogo.application.category.delete.DeleteCategoryUseCase;
 import com.fullcycle.admin.catalogo.application.category.retreive.get.CategoryOutput;
 import com.fullcycle.admin.catalogo.application.category.retreive.get.GetCategoryByIdUseCase;
+import com.fullcycle.admin.catalogo.application.category.retreive.list.CategoryListOutput;
+import com.fullcycle.admin.catalogo.application.category.retreive.list.ListCategoriesUseCase;
 import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryOutput;
 import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryUseCase;
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
 import com.fullcycle.admin.catalogo.domain.exceptions.DomainException;
 import com.fullcycle.admin.catalogo.domain.exceptions.NotFoundException;
+import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
 import com.fullcycle.admin.catalogo.domain.validation.Error;
 import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import com.fullcycle.admin.catalogo.infrastructure.api.CategoryAPI;
 import com.fullcycle.admin.catalogo.infrastructure.category.models.CreateCategoryApiInput;
 import com.fullcycle.admin.catalogo.infrastructure.category.models.UpdateCategoryApiInput;
 import io.vavr.API;
+import java.util.List;
 import java.util.Objects;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -62,6 +68,9 @@ public class CategoryAPITest {
 
   @MockBean
   private DeleteCategoryUseCase deleteCategoryUseCase;
+
+  @MockBean
+  private ListCategoriesUseCase listCategoriesUseCase;
 
   @Test
   public void givenAValidCommand_whenCallsCreateCategory_shouldReturnCategoryId()
@@ -341,6 +350,51 @@ public class CategoryAPITest {
         Objects.equals(expectedName, cmd.name()) &&
             Objects.equals(expectedDescription, cmd.description()) &&
             Objects.equals(expectedIsActive, cmd.isActive())
+    ));
+  }
+
+  @Test
+  public void givenAValidQuery_whenCallsListCategories_thenShouldReturnCategories()
+      throws Exception {
+    // given
+    final var aCategory = Category.newCategory("Movies", "NiceMovies", true);
+    final var expectedPage = 0;
+    final var expectedPerPage = 10;
+    final var expectedTerms = "movies";
+    final var expectedSort = "description";
+    final var expectedDirection = "desc";
+    final var expectedItemsCount = 1;
+    final var expectedTotal = 1;
+
+    final var expectedItems = List.of(CategoryListOutput.from(aCategory));
+
+    when(listCategoriesUseCase.execute(any()))
+        .thenReturn(new Pagination<>(expectedPage, expectedPerPage, expectedTotal, expectedItems));
+
+    final var request = get("/categories")
+        .accept(MediaType.APPLICATION_JSON)
+        .queryParam("page", String.valueOf(expectedPage))
+        .queryParam("perPage", String.valueOf(expectedPerPage))
+        .queryParam("sort", expectedSort)
+        .queryParam("dir", expectedDirection)
+        .queryParam("search", expectedTerms);
+
+    this.mvc.perform(request)
+        .andDo(print())
+        .andExpectAll(
+            MockMvcResultMatchers.status().isOk(),
+            MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON),
+            MockMvcResultMatchers.jsonPath("$.current_page", equalTo(expectedPage)),
+            MockMvcResultMatchers.jsonPath("$.per_page", equalTo(expectedPerPage)),
+            MockMvcResultMatchers.jsonPath("$.total", equalTo(expectedItemsCount)),
+            MockMvcResultMatchers.jsonPath("$.items", hasSize(expectedItemsCount)),
+            MockMvcResultMatchers.jsonPath("$.items[0].name", equalTo(aCategory.getName()))
+        );
+
+    verify(listCategoriesUseCase, times(1)).execute(argThat(cmd ->
+        Objects.equals(expectedPage, cmd.page()) &&
+            Objects.equals(expectedDirection, cmd.direction()) &&
+            Objects.equals(expectedTerms, cmd.terms())
     ));
   }
 }

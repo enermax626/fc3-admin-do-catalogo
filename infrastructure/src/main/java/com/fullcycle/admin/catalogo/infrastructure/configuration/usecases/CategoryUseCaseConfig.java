@@ -1,4 +1,4 @@
-package com.fullcycle.admin.catalogo.infrastructure.category.persistence.configuration.usecases;
+package com.fullcycle.admin.catalogo.infrastructure.configuration.usecases;
 
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCase;
 import com.fullcycle.admin.catalogo.application.category.create.DefaultCreateCategoryUseCase;
