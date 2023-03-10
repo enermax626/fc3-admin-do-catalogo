@@ -1,6 +1,3 @@
-logging:
-  level:
-    ROOT: info
 
 mysql:
   url: localhost:${mysql.port}
