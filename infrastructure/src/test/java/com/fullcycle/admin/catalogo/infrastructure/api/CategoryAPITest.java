@@ -204,8 +204,7 @@ public class CategoryAPITest {
             MockMvcResultMatchers.jsonPath("$.created_at",
                 equalTo(aCategory.getCreatedAt().toString())),
             MockMvcResultMatchers.jsonPath("$.updated_at",
-                equalTo(aCategory.getUpdatedAt().toString())),
-            MockMvcResultMatchers.jsonPath("$.deleted_at", equalTo(aCategory.getDeletedAt()))
+                equalTo(aCategory.getUpdatedAt().toString()))
         );
 
     verify(getCategoryByIdUseCase, times(1)).execute(eq(expectedId.getValue()));

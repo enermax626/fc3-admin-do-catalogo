@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.fullcycle.admin.catalogo.MySQLGatewayTest;
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
-import com.fullcycle.admin.catalogo.domain.category.CategorySearchQuery;
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
@@ -165,7 +165,7 @@ class CategoryMySQLGatewayTest {
 
     assertEquals(3, categoryRepository.count());
 
-    final var query = new CategorySearchQuery(expectedPage,
+    final var query = new SearchQuery(expectedPage,
         expectedPerPage, "", "name", "ASC");
 
     Pagination<Category> categoriesResult = categoryMySQLGateway.findAll(query);
@@ -185,7 +185,7 @@ class CategoryMySQLGatewayTest {
 
     assertEquals(0, categoryRepository.count());
 
-    final var query = new CategorySearchQuery(expectedPage,
+    final var query = new SearchQuery(expectedPage,
         expectedPerPage, "", "name", "asc");
 
     Pagination<Category> categoriesResult = categoryMySQLGateway.findAll(query);
@@ -216,7 +216,7 @@ class CategoryMySQLGatewayTest {
 
     assertEquals(3, categoryRepository.count());
 
-    final var query = new CategorySearchQuery(expectedPage,
+    final var query = new SearchQuery(expectedPage,
         expectedPerPage, "", "name", "asc");
 
     Pagination<Category> categoriesResult = categoryMySQLGateway.findAll(query);
@@ -230,7 +230,7 @@ class CategoryMySQLGatewayTest {
     // page 1
     expectedPage = 1;
 
-    final var nextQuery = new CategorySearchQuery(1,
+    final var nextQuery = new SearchQuery(1,
         expectedPerPage, "", "name", "asc");
 
     Pagination<Category> nextCategoriesResult = categoryMySQLGateway.findAll(nextQuery);
@@ -244,7 +244,7 @@ class CategoryMySQLGatewayTest {
     // page 1
     expectedPage = 2;
 
-    final var next2Query = new CategorySearchQuery(2,
+    final var next2Query = new SearchQuery(2,
         expectedPerPage, "", "name", "asc");
 
     Pagination<Category> next2CategoriesResult = categoryMySQLGateway.findAll(next2Query);
@@ -279,7 +279,7 @@ class CategoryMySQLGatewayTest {
 
     assertEquals(3, categoryRepository.count());
 
-    final var query = new CategorySearchQuery(expectedPage,
+    final var query = new SearchQuery(expectedPage,
         expectedPerPage, "doc", "name", "asc");
 
     Pagination<Category> categoriesResult = categoryMySQLGateway.findAll(query);
@@ -310,7 +310,7 @@ class CategoryMySQLGatewayTest {
 
     assertEquals(3, categoryRepository.count());
 
-    final var query = new CategorySearchQuery(expectedPage,
+    final var query = new SearchQuery(expectedPage,
         expectedPerPage, "MAIS ASSISTIDA", "name", "ASC");
 
     Pagination<Category> categoriesResult = categoryMySQLGateway.findAll(query);

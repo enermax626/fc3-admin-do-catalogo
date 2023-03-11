@@ -29,16 +29,4 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(MySQLCleanUpExtension.class)
 public @interface MySQLGatewayTest {
 
-  class MySQLCleanUpExtension implements BeforeEachCallback {
-
-    @Override
-    public void beforeEach(ExtensionContext context) throws Exception {
-      final var repositories = SpringExtension
-          .getApplicationContext(context)
-          .getBeansOfType(CrudRepository.class)
-          .values();
-
-      repositories.forEach(CrudRepository::deleteAll);
-    }
-  }
 }

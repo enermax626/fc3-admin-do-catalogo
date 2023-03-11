@@ -1,6 +1,8 @@
 package com.fullcycle.admin.catalogo.infrastructure.configuration.json;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,7 +30,10 @@ public enum Json {
 
   public static <T> T readValue(String stringValue, Class<T> clazz) {
       return invoke(() -> INSTANCE.mapper.readValue(stringValue, clazz));
+  }
 
+  public static <T> T readValue(String stringValue, TypeReference<T> clazz) {
+    return invoke(() -> INSTANCE.mapper.readValue(stringValue, clazz));
   }
 
   private static <T> T invoke(Callable<T> value) {
@@ -47,9 +52,11 @@ public enum Json {
           DeserializationFeature.FAIL_ON_NULL_CREATOR_PROPERTIES,
           SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
       )
+//      .featuresToEnable(Include.NON_NULL)
       .modules(new JavaTimeModule(), new Jdk8Module(), afterBurnerModule())
       .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-      .build();
+      .build()
+      .setDefaultPropertyInclusion(Include.NON_NULL);
 
   private Module afterBurnerModule() {
     final var module = new AfterburnerModule();

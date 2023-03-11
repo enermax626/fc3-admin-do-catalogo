@@ -5,19 +5,22 @@ import static com.fullcycle.admin.catalogo.infrastructure.utils.SpecificationUti
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
-import com.fullcycle.admin.catalogo.domain.category.CategorySearchQuery;
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import com.fullcycle.admin.catalogo.infrastructure.utils.SpecificationUtils;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class CategoryMySQLGateway implements CategoryGateway {
 
   private final CategoryRepository categoryRepository;
@@ -50,7 +53,7 @@ public class CategoryMySQLGateway implements CategoryGateway {
   }
 
   @Override
-  public Pagination<Category> findAll(CategorySearchQuery aQuery) {
+  public Pagination<Category> findAll(SearchQuery aQuery) {
 
     final var pageRequest = PageRequest.of(
         aQuery.page(),
@@ -71,6 +74,12 @@ public class CategoryMySQLGateway implements CategoryGateway {
         pageResult.getSize(),
         pageResult.getTotalElements(),
         pageResult.map(CategoryJpaEntity::toAggregate).toList());
+  }
+
+  @Override
+  public List<CategoryId> existsByIds(Iterable<CategoryId> categoriesIds) {
+    //TODO implement when reach infrastructure
+    return Collections.emptyList();
   }
 
   private Category save(Category aCategory) {

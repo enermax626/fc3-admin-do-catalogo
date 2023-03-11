@@ -5,18 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
 
 import com.fullcycle.admin.catalogo.IntegrationTest;
 import com.fullcycle.admin.catalogo.application.category.retreive.list.CategoryListOutput;
 import com.fullcycle.admin.catalogo.application.category.retreive.list.ListCategoriesUseCase;
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
-import com.fullcycle.admin.catalogo.domain.category.CategorySearchQuery;
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
-import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +56,7 @@ public class ListCategoriesUseCaseIT {
     final var expectedSort = "createdAt";
     final var expectedDirection = "asc";
     final var aQuery =
-        new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+        new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
     final var expectedItemsCount = 4;
 
@@ -83,7 +81,7 @@ public class ListCategoriesUseCaseIT {
     final var expectedLastCategoryName = "Sports";
 
     final var aQuery =
-        new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+        new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
 
     final var actualResult = useCase.execute(aQuery);
@@ -113,7 +111,7 @@ public class ListCategoriesUseCaseIT {
     final var expectedDirection = "asc";
 
     final var aQuery =
-        new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+        new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
     final var actualResult = useCase.execute(aQuery);
 
@@ -132,7 +130,7 @@ public class ListCategoriesUseCaseIT {
     final var expectedSort = "createdAt";
     final var expectedDirection = "asc";
     final var aQuery =
-        new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+        new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
     final var categories = List.<Category>of();
 
@@ -160,7 +158,7 @@ public class ListCategoriesUseCaseIT {
     final var expectedDirection = "asc";
 
     final var aQuery =
-        new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+        new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
     final var expectedResultSize = 0;
     final var expectedItemsCount = 0;
 
@@ -181,7 +179,7 @@ public class ListCategoriesUseCaseIT {
     final var expectedDirection = "asc";
     final var expectedException = "Gateway exception";
     final var aQuery =
-        new CategorySearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
+        new SearchQuery(expectedPage, expectedPerPage, expectedTerms, expectedSort, expectedDirection);
 
     doThrow(new IllegalStateException(expectedException))
         .when(categoryGateway).findAll(eq(aQuery));

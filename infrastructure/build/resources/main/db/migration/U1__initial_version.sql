@@ -1,1 +1,1 @@
-DEOP TABLE category;
+DROP TABLE category;
