@@ -22,9 +22,5 @@ public class MySQLCleanUpExtension implements BeforeEachCallback {
         applicationContext.getBean(CategoryRepository.class)
     ).forEach(CrudRepository::deleteAll);
 
-    final var em = applicationContext.getBean(TestEntityManager.class);
-    em.flush();
-    em.clear();
-
   }
 }

@@ -65,7 +65,7 @@ public class CategoryController implements CategoryAPI {
 
     Function<UpdateCategoryOutput, ResponseEntity<?>> onSucess = ResponseEntity::ok;
 
-    return updateCategoryUseCase.execute(anCommand).fold(onError,onSucess);
+    return updateCategoryUseCase.execute(anCommand).fold(onError, onSucess);
   }
 
   @Override
@@ -86,9 +86,9 @@ public class CategoryController implements CategoryAPI {
         ResponseEntity.unprocessableEntity().body(notification);
 
     Function<CreateCategoryOutput, ResponseEntity<?>> onSucess = output ->
-        ResponseEntity.created(URI.create("/categories/"+output.id())).body(output);
+        ResponseEntity.created(URI.create("/categories/" + output.id())).body(output);
 
-   return createCategoryUseCase.execute(anCommand).fold(onError,onSucess);
+    return createCategoryUseCase.execute(anCommand).fold(onError, onSucess);
   }
 
   @Override

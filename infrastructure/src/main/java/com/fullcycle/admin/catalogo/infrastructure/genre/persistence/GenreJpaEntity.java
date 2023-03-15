@@ -27,7 +27,7 @@ public class GenreJpaEntity {
   private String name;
 
   @Column(name = "is_active", nullable = false)
-  private boolean isActive;
+  private Boolean isActive;
 
   @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<GenreCategoryJpaEntity> categories;
@@ -65,20 +65,10 @@ public class GenreJpaEntity {
     return entity;
   }
 
-  public Genre toAggregate(GenreJpaEntity genreJpaEntity) {
-    return Genre.with(genreJpaEntity.getId(),
-        genreJpaEntity.getName(),
-        genreJpaEntity.isActive(),
-        genreJpaEntity.getCategoriesIds(),
-        genreJpaEntity.getCreatedAt(),
-        genreJpaEntity.getUpdatedAt(),
-        genreJpaEntity.getDeletedAt());
-  }
-
   public Genre toAggregate() {
     return Genre.with(this.getId(),
         this.getName(),
-        this.isActive(),
+        this.getIsActive(),
         this.getCategoriesIds(),
         this.getCreatedAt(),
         this.getUpdatedAt(),
@@ -109,11 +99,11 @@ public class GenreJpaEntity {
     this.name = name;
   }
 
-  public boolean isActive() {
+  public boolean getIsActive() {
     return isActive;
   }
 
-  public void setActive(boolean active) {
+  public void setIsActive(boolean active) {
     isActive = active;
   }
 
