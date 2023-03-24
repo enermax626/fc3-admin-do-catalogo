@@ -1,5 +1,7 @@
 package com.fullcycle.admin.catalogo.infrastructure.api.controllers;
 
+import static java.util.Objects.isNull;
+
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryCommand;
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryOutput;
 import com.fullcycle.admin.catalogo.application.category.create.CreateCategoryUseCase;
@@ -10,8 +12,8 @@ import com.fullcycle.admin.catalogo.application.category.retreive.list.ListCateg
 import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryCommand;
 import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryOutput;
 import com.fullcycle.admin.catalogo.application.category.update.UpdateCategoryUseCase;
-import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import com.fullcycle.admin.catalogo.infrastructure.api.CategoryAPI;
 import com.fullcycle.admin.catalogo.infrastructure.category.models.CategoryApiOutput;
@@ -58,7 +60,7 @@ public class CategoryController implements CategoryAPI {
             id,
             anInput.name(),
             anInput.description(),
-            Objects.isNull(anInput.active()) ? true : anInput.active());
+            isNull(anInput.active()) ? true : anInput.active());
 
     Function<Notification, ResponseEntity<?>> onError = notification ->
         ResponseEntity.unprocessableEntity().body(notification);
@@ -80,7 +82,7 @@ public class CategoryController implements CategoryAPI {
         CreateCategoryCommand.with(
             anInput.name(),
             anInput.description(),
-            Objects.isNull(anInput.active()) ? true : anInput.active());
+            isNull(anInput.active()) ? true : anInput.active());
 
     Function<Notification, ResponseEntity<?>> onError = notification ->
         ResponseEntity.unprocessableEntity().body(notification);

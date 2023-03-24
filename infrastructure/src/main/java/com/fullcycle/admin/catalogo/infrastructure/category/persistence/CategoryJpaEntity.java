@@ -1,12 +1,11 @@
 package com.fullcycle.admin.catalogo.infrastructure.category.persistence;
 
 import com.fullcycle.admin.catalogo.domain.category.Category;
-
+import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.Instant;
 
 @Entity
 @Table(name = "category")

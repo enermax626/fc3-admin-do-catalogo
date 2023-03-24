@@ -111,7 +111,8 @@ public class GenreMySQLGatewayTest {
   }
 
   @Test
-  public void givenAValidGenreWithCategory_whenCallsUpdate_shouldUpdateGenre() {
+  public void givenAValidGenreWithCategory_whenCallsUpdate_shouldUpdateGenre()
+      throws InterruptedException {
     final var filmes = categoryGateway.create(
         Category.newCategory("Movies", "Movies Category", true));
 
@@ -137,6 +138,7 @@ public class GenreMySQLGatewayTest {
 
     actualGenre.update("Action Updated", actualGenre.getIsActive(), actualGenre.getCategories());
 
+    Thread.sleep(150);
     Genre updatedGenre = genreGateway.update(actualGenre);
 
     assertEquals(actualGenre.getName(), updatedGenre.getName());
@@ -278,11 +280,20 @@ public class GenreMySQLGatewayTest {
   }
 
   private void mockGenres() {
+    try {
     this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Comédia Romântica", true)));
-    this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Ação", true)));
-    this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Drama", true)));
-    this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Terror", true)));
-    this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Ficção cientifica", true)));
+      Thread.sleep(15);
+      this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Ação", true)));
+      Thread.sleep(15);
+      this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Drama", true)));
+      Thread.sleep(15);
+      this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Terror", true)));
+      Thread.sleep(15);
+      this.genreRepository.saveAndFlush(GenreJpaEntity.from(Genre.newGenre("Ficção cientifica", true)));
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
+
   }
 
 }

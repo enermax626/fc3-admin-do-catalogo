@@ -7,12 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
 import com.fullcycle.admin.catalogo.domain.exceptions.DomainException;
-import com.fullcycle.admin.catalogo.domain.validation.handlers.ThrowValidationHandler;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 
@@ -86,7 +85,7 @@ public class GenreTest {
     final var expectedName = "Action";
     final var expectedIsActive = true;
     final var expectedCategoryId = CategoryId.unique();
-    final var expectedCategories = List.of(expectedCategoryId);
+    final var expectedCategories = Set.of(expectedCategoryId);
 
     final var actualGenre = Genre.newGenre(expectedName, false);
 
@@ -129,11 +128,11 @@ public class GenreTest {
     final var expectedIsActive = true;
     final var movieCatId = CategoryId.from("123");
     final var seriesCatId = CategoryId.from("456");
-    final var expectedCategories = List.of(movieCatId);
+    final var expectedCategories = Set.of(movieCatId);
 
     final var genre = Genre.newGenre(expectedName, true);
 
-    genre.update(expectedName, expectedIsActive, List.of(movieCatId, seriesCatId));
+    genre.update(expectedName, expectedIsActive, Set.of(movieCatId, seriesCatId));
 
     genre.removeCategory(seriesCatId);
 
@@ -148,11 +147,11 @@ public class GenreTest {
     final var movieCatId = CategoryId.from("123");
     final var seriesCatId = CategoryId.from("456");
     final var expectedCategoriesCount = 2;
-    final var expectedCategories = List.of(movieCatId,seriesCatId);
+    final var expectedCategories = Set.of(movieCatId,seriesCatId);
 
     final var genre = Genre.newGenre(expectedName, true);
 
-    genre.update(expectedName, expectedIsActive, List.of(movieCatId));
+    genre.update(expectedName, expectedIsActive, Set.of(movieCatId));
 
     genre.addCategory(seriesCatId);
 
@@ -168,11 +167,11 @@ public class GenreTest {
     final var movieCatId = CategoryId.from("123");
     final var seriesCatId = CategoryId.from("456");
     final var expectedCategoriesCount = 2;
-    final var expectedCategories = List.of(movieCatId,seriesCatId);
+    final var expectedCategories = Set.of(movieCatId,seriesCatId);
 
     final var genre = Genre.newGenre(expectedName, true);
 
-    genre.update(expectedName, expectedIsActive, List.of(movieCatId));
+    genre.update(expectedName, expectedIsActive, Set.of(movieCatId));
 
     genre.addCategory(seriesCatId);
     genre.addCategory(seriesCatId);

@@ -10,6 +10,7 @@ import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DefaultCreateGenreUseCase extends CreateGenreUseCase {
@@ -42,7 +43,7 @@ public class DefaultCreateGenreUseCase extends CreateGenreUseCase {
     return CreateGenreOutput.from(genreGateway.create(aGenre));
   }
 
-  private Notification validateCategories(List<CategoryId> categoriesIds) {
+  private Notification validateCategories(Set<CategoryId> categoriesIds) {
     final var notification = Notification.create();
     if (categoriesIds == null || categoriesIds.isEmpty()) {
       return notification;
@@ -60,7 +61,7 @@ public class DefaultCreateGenreUseCase extends CreateGenreUseCase {
     return notification;
   }
 
-  private List<CategoryId> toCategoryId(List<String> categories) {
-    return categories.stream().map(CategoryId::from).collect(Collectors.toList());
+  private Set<CategoryId> toCategoryId(Set<String> categories) {
+    return categories.stream().map(CategoryId::from).collect(Collectors.toSet());
   }
 }

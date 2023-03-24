@@ -1,7 +1,6 @@
 package com.fullcycle.admin.catalogo.infrastructure.category.models;
 
 import com.fullcycle.admin.catalogo.JacksonTest;
-import com.fullcycle.admin.catalogo.domain.category.Category;
 import java.io.IOException;
 import java.time.Instant;
 import org.assertj.core.api.Assertions;

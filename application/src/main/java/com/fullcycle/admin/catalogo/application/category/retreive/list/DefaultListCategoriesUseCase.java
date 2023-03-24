@@ -1,9 +1,8 @@
 package com.fullcycle.admin.catalogo.application.category.retreive.list;
 
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
-import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
-
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import java.util.Objects;
 
 public class DefaultListCategoriesUseCase extends ListCategoriesUseCase {

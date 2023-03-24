@@ -1,18 +1,20 @@
 package com.fullcycle.admin.catalogo.infrastructure.category;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fullcycle.admin.catalogo.MySQLGatewayTest;
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
-import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.category.persistence.CategoryRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -320,6 +322,32 @@ class CategoryMySQLGatewayTest {
     assertEquals(expectedTotal, categoriesResult.total());
     assertEquals(expectedPerPage, categoriesResult.items().size());
     assertEquals(filmes.getId(), categoriesResult.items().get(0).getId());
+  }
+
+  @Test
+  public void givenExistentCategories_whenCallExistsByIds_shouldReturnCategoriesIds() {
+
+    List<Category> categories = List.of(Category.newCategory("Filmes", "Filmes description", true),
+        Category.newCategory("Ação", "Ação description", true));
+
+    assertEquals(0, categoryRepository.count());
+
+    categoryRepository.saveAllAndFlush(categories.stream()
+        .map(CategoryJpaEntity::from)
+        .toList());
+
+    assertEquals(2, categoryRepository.count());
+
+    Set<CategoryId> categoryIds = categoryMySQLGateway.existsByIds(categories.stream()
+        .map(Category::getId)
+        .toList());
+
+    assertFalse(categoryIds.isEmpty());
+    assertEquals(2, categoryIds.size());
+    assertTrue(categoryIds.containsAll(categories.stream()
+        .map(Category::getId)
+        .toList()));
+
   }
 
 }

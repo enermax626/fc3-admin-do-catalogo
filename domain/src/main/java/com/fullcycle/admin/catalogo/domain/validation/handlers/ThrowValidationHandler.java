@@ -3,7 +3,6 @@ package com.fullcycle.admin.catalogo.domain.validation.handlers;
 import com.fullcycle.admin.catalogo.domain.exceptions.DomainException;
 import com.fullcycle.admin.catalogo.domain.validation.Error;
 import com.fullcycle.admin.catalogo.domain.validation.ValidationHandler;
-
 import java.util.List;
 
 public class ThrowValidationHandler implements ValidationHandler {

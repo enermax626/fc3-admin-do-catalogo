@@ -1,3 +1,41 @@
+google:
+  cloud:
+    credentials: ${GOOGLE_CLOUD_CREDENTIALS}
+    project-id: ${GOOGLE_CLOUD_PROJECT_ID}
+    storage:
+      catalogo-videos:
+        bucket-name: ${GOOGLE_CLOUD_STORAGE_BUCKET_NAME:catalogo_videos_full_cycle}
+        connection-timeout: 3000
+        read-timeout: 3000
+        retry-delay: 300
+        retry-max-attempts: 2
+        retry-max-delay: 300
+        retry-multiplier: 1.5
+
+storage:
+  catalogo-videos:
+    location-pattern: videoId-{videoId}
+    filename-pattern: type-{type}
+
+amqp:
+  admin:
+    auto-create: false
+  queues:
+    video-created:
+      exchange: video.events
+      routing-key: video.created
+      queue: video.created.queue
+    video-encoded:
+      exchange: video.events
+      routing-key: video.encoded
+      queue: video.encoded.queue
+
+
+logging:
+  level:
+    ROOT: INFO
+    com.fullcycle.admin.catalogo: DEBUG
+
 server:
   port: 8080
   servlet:
@@ -32,3 +70,9 @@ spring:
       "[hibernate.dialect]": org.hibernate.dialect.MySQL5InnoDBDialect
       "[hibernate.generate.statistics]": true
       "[hibernate.connection.provider_disables_autocommit]": true
+  rabbitmq:
+    host: ${amqp.host}
+    port: ${amqp.port}
+    username: ${amqp.username}
+    password: ${amqp.password}
+    dynamic: ${amqp.admin.auto-create}

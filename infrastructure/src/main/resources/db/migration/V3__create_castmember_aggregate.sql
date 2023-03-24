@@ -1,0 +1,7 @@
+CREATE TABLE cast_member (
+  id VARCHAR(36) NOT NULL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  type VARCHAR(36) NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL
+);

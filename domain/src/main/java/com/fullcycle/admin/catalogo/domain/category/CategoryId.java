@@ -1,9 +1,8 @@
 package com.fullcycle.admin.catalogo.domain.category;
 
 import com.fullcycle.admin.catalogo.domain.Identifier;
-
+import com.fullcycle.admin.catalogo.domain.utils.IdUtils;
 import java.util.Objects;
-import java.util.UUID;
 
 public class CategoryId extends Identifier {
 
@@ -15,15 +14,11 @@ public class CategoryId extends Identifier {
     }
 
     public static CategoryId unique(){
-        return new CategoryId(UUID.randomUUID().toString().toLowerCase());
+        return new CategoryId(IdUtils.generate());
     }
 
     public static CategoryId from(final String anId){
         return new CategoryId(anId);
-    }
-
-    public static CategoryId from(final UUID anId){
-        return new CategoryId(anId.toString().toLowerCase());
     }
 
     public String getValue() {

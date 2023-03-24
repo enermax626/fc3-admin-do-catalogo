@@ -8,7 +8,11 @@ import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.infrastructure.genre.persistence.GenreJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.genre.persistence.GenreRepository;
 import com.fullcycle.admin.catalogo.infrastructure.utils.SpecificationUtils;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -69,6 +73,15 @@ public class GenreMySQLGateway implements GenreGateway {
         results.getTotalElements(),
         results.map(GenreJpaEntity::toAggregate).toList()
     );
+  }
+
+  @Override
+  public Set<GenreId> existsByIds(Iterable<GenreId> categoriesIds) {
+    List<String> ids = StreamSupport.stream(categoriesIds.spliterator(), false)
+        .map(GenreId::getValue).toList();
+
+    return this.genreRepository.existsByIds(ids).stream().map(GenreId::from)
+        .collect(Collectors.toSet());
   }
 
   private Specification<GenreJpaEntity> assembleSpecification(String terms) {

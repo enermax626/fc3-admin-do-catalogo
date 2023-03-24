@@ -11,6 +11,7 @@ import com.fullcycle.admin.catalogo.domain.validation.Error;
 import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DefaultUpdateGenreUseCase extends UpdateGenreUsecase {
@@ -30,7 +31,7 @@ public class DefaultUpdateGenreUseCase extends UpdateGenreUsecase {
     final var aName = aCommand.name();
     final var isActive = aCommand.isActive();
     final var categories = aCommand.categories().stream().map(CategoryId::from)
-        .collect(Collectors.toList());
+        .collect(Collectors.toSet());
 
     Genre aGenre = genreGateway.findById(anId)
         .orElseThrow(() -> NotFoundException.with(Genre.class, anId));
@@ -46,7 +47,7 @@ public class DefaultUpdateGenreUseCase extends UpdateGenreUsecase {
     return UpdateGenreOutput.from(genreGateway.update(updatedGenre));
   }
 
-  private Notification validateCategories(List<CategoryId> categoriesIds) {
+  private Notification validateCategories(Set<CategoryId> categoriesIds) {
     final var notification = Notification.create();
     if (categoriesIds == null || categoriesIds.isEmpty()) {
       return notification;

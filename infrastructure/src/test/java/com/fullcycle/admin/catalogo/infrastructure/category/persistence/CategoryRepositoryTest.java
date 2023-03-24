@@ -3,8 +3,8 @@ package com.fullcycle.admin.catalogo.infrastructure.category.persistence;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.MySQLGatewayTest;
+import com.fullcycle.admin.catalogo.domain.category.Category;
 import org.hibernate.PropertyValueException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

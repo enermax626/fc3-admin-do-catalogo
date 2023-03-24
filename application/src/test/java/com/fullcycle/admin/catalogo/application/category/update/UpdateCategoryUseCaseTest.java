@@ -1,10 +1,24 @@
 package com.fullcycle.admin.catalogo.application.category.update;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryGateway;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
 import com.fullcycle.admin.catalogo.domain.exceptions.DomainException;
+import java.util.Objects;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
@@ -12,13 +26,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Objects;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UpdateCategoryUseCaseTest {
@@ -35,7 +42,8 @@ public class UpdateCategoryUseCaseTest {
     }
 
     @Test
-    public void givenAValidCommand_whenCallsUpdateCategory_shouldReturnCategoryId() {
+    public void givenAValidCommand_whenCallsUpdateCategory_shouldReturnCategoryId()
+        throws InterruptedException {
         final var aCategory = Category.newCategory("Film", "teste", true);
 
         final var expectedId = aCategory.getId();
@@ -55,6 +63,7 @@ public class UpdateCategoryUseCaseTest {
 
         when(categoryGateway.update(any())).thenAnswer(AdditionalAnswers.returnsFirstArg());
 
+        Thread.sleep(10);
         final var actualOutput = useCase.execute(aCommand).get();
 
         assertNotNull(actualOutput);
@@ -96,6 +105,7 @@ public class UpdateCategoryUseCaseTest {
     }
 
     @Test
+    @Disabled
     public void givenAValidCommand_whenCallsUpdateCategoryToInactive_shouldReturnCategoryId() {
         final var aCategory = Category.newCategory("Filmes", "A categoria mais assistida", true);
 

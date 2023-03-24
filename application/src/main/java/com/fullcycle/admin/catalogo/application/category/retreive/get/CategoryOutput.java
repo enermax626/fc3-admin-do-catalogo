@@ -2,7 +2,6 @@ package com.fullcycle.admin.catalogo.application.category.retreive.get;
 
 import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
-
 import java.time.Instant;
 
 public record CategoryOutput(

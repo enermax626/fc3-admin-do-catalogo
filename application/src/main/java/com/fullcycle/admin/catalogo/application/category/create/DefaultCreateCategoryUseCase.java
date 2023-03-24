@@ -6,7 +6,6 @@ import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import io.vavr.API;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
-
 import java.util.Objects;
 
 public class DefaultCreateCategoryUseCase extends CreateCategoryUseCase {

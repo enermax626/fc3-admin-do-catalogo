@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -107,8 +108,9 @@ public class GenreJpaEntity {
     isActive = active;
   }
 
-  public List<CategoryId> getCategoriesIds() {
-    return this.categories.stream().map(it -> CategoryId.from(it.getId().getCategoryId())).toList();
+  public Set<CategoryId> getCategoriesIds() {
+    return this.categories.stream().map(it -> CategoryId.from(it.getId().getCategoryId())).collect(
+        Collectors.toSet());
   }
 
   public Set<GenreCategoryJpaEntity> getCategories() {

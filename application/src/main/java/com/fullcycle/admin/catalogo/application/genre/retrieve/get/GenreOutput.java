@@ -20,7 +20,7 @@ public record GenreOutput(
         genre.getId().toString(),
         genre.getName(),
         genre.getIsActive(),
-        genre.getCategories().stream().map(CategoryId::toString).toList(),
+        genre.getCategories().stream().map(CategoryId::getValue).toList(),
         genre.getCreatedAt(),
         genre.getUpdatedAt(),
         genre.getDeletedAt()

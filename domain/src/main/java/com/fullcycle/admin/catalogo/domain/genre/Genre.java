@@ -1,7 +1,6 @@
 package com.fullcycle.admin.catalogo.domain.genre;
 
 import com.fullcycle.admin.catalogo.domain.AggregateRoot;
-import com.fullcycle.admin.catalogo.domain.category.Category;
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
 import com.fullcycle.admin.catalogo.domain.exceptions.NotificationException;
 import com.fullcycle.admin.catalogo.domain.utils.InstantUtils;
@@ -10,7 +9,9 @@ import com.fullcycle.admin.catalogo.domain.validation.handlers.Notification;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Genre extends AggregateRoot<GenreId> {
 
@@ -18,7 +19,7 @@ public class Genre extends AggregateRoot<GenreId> {
 
   private boolean isActive;
 
-  private List<CategoryId> categories;
+  private Set<CategoryId> categories;
 
   private Instant createdAt;
 
@@ -26,7 +27,7 @@ public class Genre extends AggregateRoot<GenreId> {
 
   private Instant deletedAt;
 
-  private Genre(GenreId identifier, String name, boolean isActive, List<CategoryId> categories,
+  private Genre(GenreId identifier, String name, boolean isActive, Set<CategoryId> categories,
       Instant createdAt, Instant updatedAt, Instant deletedAt) {
     super(identifier);
     this.name = name;
@@ -40,11 +41,11 @@ public class Genre extends AggregateRoot<GenreId> {
 
   public static Genre newGenre(String name, boolean isActive) {
     final var deletedAt = isActive ? null : Instant.now();
-    return new Genre(GenreId.unique(), name, isActive, new ArrayList<>(), Instant.now(),
+    return new Genre(GenreId.unique(), name, isActive, new HashSet<>(), Instant.now(),
         Instant.now(), deletedAt);
   }
 
-  public static Genre with(String anId, String name, boolean isActive, List<CategoryId> categories,
+  public static Genre with(String anId, String name, boolean isActive, Set<CategoryId> categories,
       Instant createdAt, Instant updatedAt, Instant deletedAt) {
     return new Genre(GenreId.from(anId), name, isActive, categories, createdAt, updatedAt,
         deletedAt);
@@ -64,8 +65,8 @@ public class Genre extends AggregateRoot<GenreId> {
     return isActive;
   }
 
-  public List<CategoryId> getCategories() {
-    return Collections.unmodifiableList(categories);
+  public Set<CategoryId> getCategories() {
+    return Collections.unmodifiableSet(categories);
   }
 
   public Instant getCreatedAt() {
@@ -96,7 +97,7 @@ public class Genre extends AggregateRoot<GenreId> {
     return this;
   }
 
-  public Genre update(String name, boolean isActive, List<CategoryId> categories) {
+  public Genre update(String name, boolean isActive, Set<CategoryId> categories) {
     if (isActive) {
       activate();
     } else {
@@ -104,7 +105,7 @@ public class Genre extends AggregateRoot<GenreId> {
 
     }
     this.name = name;
-    this.categories = new ArrayList<>(categories != null ? categories : Collections.emptyList());
+    this.categories = new HashSet<>(categories != null ? categories : Collections.emptySet());
     this.updatedAt = InstantUtils.now();
     selfValidate();
     return this;

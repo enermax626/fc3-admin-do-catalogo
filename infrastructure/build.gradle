@@ -34,6 +34,9 @@ dependencies {
     implementation('mysql:mysql-connector-java')
     implementation('io.vavr:vavr:0.10.4')
 
+    implementation 'com.google.cloud:google-cloud-storage:2.20.1'
+    implementation 'com.google.guava:guava:31.1-jre'
+
     implementation('org.springdoc:springdoc-openapi-webmvc-core:1.6.8')
     implementation('org.springdoc:springdoc-openapi-ui:1.6.8')
     implementation('com.fasterxml.jackson.module:jackson-module-afterburner')
@@ -42,7 +45,12 @@ dependencies {
         exclude module: 'spring-boot-starter-tomcat'
     }
     implementation 'org.springframework.boot:spring-boot-starter-undertow'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+
+
+    testImplementation 'org.springframework.amqp:spring-rabbit-test:2.4.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.flywaydb:flyway-core'
 

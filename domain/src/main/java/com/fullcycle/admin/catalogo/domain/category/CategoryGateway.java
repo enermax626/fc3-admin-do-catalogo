@@ -1,10 +1,9 @@
 package com.fullcycle.admin.catalogo.domain.category;
 
-import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
-
-import java.util.List;
+import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import java.util.Optional;
+import java.util.Set;
 
 public interface CategoryGateway {
 
@@ -18,5 +17,5 @@ public interface CategoryGateway {
 
     Pagination<Category> findAll(SearchQuery aQuery);
 
-    List<CategoryId> existsByIds(Iterable<CategoryId> categoriesIds);
+    Set<CategoryId> existsByIds(Iterable<CategoryId> categoriesIds);
 }
