@@ -2,6 +2,7 @@ package com.fullcycle.admin.catalogo.infrastructure.video.persistence;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 

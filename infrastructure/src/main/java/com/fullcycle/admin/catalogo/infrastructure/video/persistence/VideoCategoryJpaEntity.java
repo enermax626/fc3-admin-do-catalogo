@@ -1,6 +1,8 @@
 package com.fullcycle.admin.catalogo.infrastructure.video.persistence;
 
 import com.fullcycle.admin.catalogo.domain.category.CategoryId;
+import java.util.Objects;
+import java.util.UUID;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Table(name = "video_category")
+@Table(name = "video_categories")
 @Entity
 public class VideoCategoryJpaEntity {
 
@@ -46,5 +48,22 @@ public class VideoCategoryJpaEntity {
 
   public void setVideo(VideoJpaEntity video) {
     this.video = video;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    VideoCategoryJpaEntity that = (VideoCategoryJpaEntity) o;
+    return Objects.equals(id, that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }

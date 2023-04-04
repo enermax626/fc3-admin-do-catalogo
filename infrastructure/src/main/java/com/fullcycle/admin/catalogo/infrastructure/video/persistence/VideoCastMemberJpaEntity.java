@@ -10,15 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Table(name = "video_cast_member")
+@Table(name = "video_cast_members")
 @Entity
 public class VideoCastMemberJpaEntity {
 
   @EmbeddedId
   private VideoCastMemberID id;
 
-  @MapsId("videoId")
   @ManyToOne(fetch = FetchType.LAZY)
+  @MapsId("videoId")
   private VideoJpaEntity video;
 
   public VideoCastMemberJpaEntity() {
@@ -59,11 +59,11 @@ public class VideoCastMemberJpaEntity {
       return false;
     }
     VideoCastMemberJpaEntity that = (VideoCastMemberJpaEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(video, that.video);
+    return Objects.equals(id, that.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, video);
+    return Objects.hash(id);
   }
 }

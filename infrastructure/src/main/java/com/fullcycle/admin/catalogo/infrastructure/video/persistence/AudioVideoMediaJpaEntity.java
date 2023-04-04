@@ -22,7 +22,7 @@ public class AudioVideoMediaJpaEntity {
   @Column(name = "file_path", nullable = false)
   private String filePath;
 
-  @Column(name = "encoded_path", nullable = false)
+  @Column(name = "encoded_path")
   private String encodedPath;
 
   @Column(name = "status", nullable = false)

@@ -17,7 +17,7 @@ public record GenreOutput(
 
   public static GenreOutput from(final Genre genre) {
     return new GenreOutput(
-        genre.getId().toString(),
+        genre.getId().getValue(),
         genre.getName(),
         genre.getIsActive(),
         genre.getCategories().stream().map(CategoryId::getValue).toList(),

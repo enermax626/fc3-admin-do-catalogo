@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Table(name = "video_genre")
+@Table(name = "video_genres")
 @Entity
 public class VideoGenreJpaEntity {
 
@@ -49,6 +49,7 @@ public class VideoGenreJpaEntity {
     this.video = video;
   }
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -58,11 +59,11 @@ public class VideoGenreJpaEntity {
       return false;
     }
     VideoGenreJpaEntity that = (VideoGenreJpaEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(video, that.video);
+    return Objects.equals(id, that.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, video);
+    return Objects.hash(id);
   }
 }

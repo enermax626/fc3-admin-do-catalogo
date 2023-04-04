@@ -129,7 +129,7 @@ public class Genre extends AggregateRoot<GenreId> {
     return this;
   }
 
-  public Genre addCategory(List<CategoryId> categories) {
+  public Genre addCategory(Set<CategoryId> categories) {
     if(categories == null || categories.isEmpty()) {
       return this;
     }

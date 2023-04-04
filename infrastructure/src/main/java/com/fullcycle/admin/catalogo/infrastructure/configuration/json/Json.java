@@ -50,11 +50,9 @@ public enum Json {
           DeserializationFeature.FAIL_ON_NULL_CREATOR_PROPERTIES,
           SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
       )
-//      .featuresToEnable(Include.NON_NULL)
       .modules(new JavaTimeModule(), new Jdk8Module(), afterBurnerModule())
       .propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-      .build()
-      .setDefaultPropertyInclusion(Include.NON_NULL);
+      .build();
 
   private Module afterBurnerModule() {
     final var module = new AfterburnerModule();

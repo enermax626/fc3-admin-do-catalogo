@@ -10,8 +10,10 @@ import com.fullcycle.admin.catalogo.domain.video.VideoId;
 import java.time.Instant;
 import java.time.Year;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,7 +37,7 @@ public class VideoJpaEntity {
   @Column(name = "title", nullable = false)
   private String title;
 
-  @Column(name = "description", nullable = false)
+  @Column(name = "description", length = 4000)
   private String description;
 
   @Column(name = "launched_at", nullable = false)
@@ -44,6 +46,7 @@ public class VideoJpaEntity {
   @Column(name = "duration", nullable = false, precision = 2)
   private Double duration;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "rating", nullable = false)
   private Rating rating;
 
@@ -79,14 +82,14 @@ public class VideoJpaEntity {
   @JoinColumn(name = "thumbnail_half_id")
   private ImageMediaJpaEntity thumbnailHalf;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private Set<VideoCategoryJpaEntity> categories;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private Set<VideoGenreJpaEntity> genres;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-  private Set<VideoCastMemberJpaEntity> castMembers;
+  @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  private Set<VideoCastMemberJpaEntity> members;
 
 
   public VideoJpaEntity() {
@@ -114,7 +117,7 @@ public class VideoJpaEntity {
     this.thumbnailHalf = thumbnailHalf;
     this.categories = new HashSet<>(3);
     this.genres = new HashSet<>(3);
-    this.castMembers = new HashSet<>(3);
+    this.members = new HashSet<>(3);
   }
 
   public static VideoJpaEntity from(Video aVideo) {
@@ -123,9 +126,10 @@ public class VideoJpaEntity {
         aVideo.getRating(), aVideo.getOpened(), aVideo.getPublished(), aVideo.getCreatedAt(),
         aVideo.getUpdatedAt(), aVideo.getVideo().map(AudioVideoMediaJpaEntity::from).orElse(null),
         aVideo.getTrailer().map(AudioVideoMediaJpaEntity::from).orElse(null),
-        aVideo.getBanner().map(ImageMediaJpaEntity::from).orElse(null),
-        aVideo.getThumbnail().map(ImageMediaJpaEntity::from).orElse(null),
-        aVideo.getThumbnailHalf().map(ImageMediaJpaEntity::from).orElse(null));
+null,null,null);
+//        aVideo.getBanner().map(ImageMediaJpaEntity::from).orElse(null),
+//        aVideo.getThumbnail().map(ImageMediaJpaEntity::from).orElse(null),
+//        aVideo.getThumbnailHalf().map(ImageMediaJpaEntity::from).orElse(null));
 
     aVideo.getCategories().forEach(entity::addCategory);
     aVideo.getGenres().forEach(entity::addGenre);
@@ -143,7 +147,7 @@ public class VideoJpaEntity {
   }
 
   public void addCastMember(CastMemberId castMemberId) {
-    this.castMembers.add(VideoCastMemberJpaEntity.with(castMemberId, this));
+    this.members.add(VideoCastMemberJpaEntity.with(castMemberId, this));
   }
 
   public Set<VideoCategoryJpaEntity> getCategories() {
@@ -154,23 +158,23 @@ public class VideoJpaEntity {
     return genres;
   }
 
-  public Set<VideoCastMemberJpaEntity> getCastMembers() {
-    return castMembers;
+  public Set<VideoCastMemberJpaEntity> getMembers() {
+    return members;
   }
 
   public Video toAggregate() {
-    return Video.with(VideoId.from(this.id), this.title, this.description, Year.of(this.launchedAt),
+    return Video.with(VideoId.from(this.id.toString()), this.title, this.description, Year.of(this.launchedAt),
         this.duration, this.rating, this.opened, this.published, this.createdAt, this.updatedAt,
         Optional.ofNullable(this.banner).map(ImageMediaJpaEntity::toAggregate).orElse(null),
         Optional.ofNullable(this.thumbnail).map(ImageMediaJpaEntity::toAggregate).orElse(null),
         Optional.ofNullable(this.thumbnailHalf).map(ImageMediaJpaEntity::toAggregate).orElse(null),
         Optional.ofNullable(this.trailer).map(AudioVideoMediaJpaEntity::toAggregate).orElse(null),
         Optional.ofNullable(this.video).map(AudioVideoMediaJpaEntity::toAggregate).orElse(null),
-        getCategories().stream().map(it -> CategoryId.from(it.getId().getCategoryId()))
+        getCategories().stream().map(it -> CategoryId.from(it.getId().getCategoryId().toString()))
             .collect(Collectors.toSet()),
         getGenres().stream().map(it -> GenreId.from(it.getId().getGenreId()))
             .collect(Collectors.toSet()),
-        getCastMembers().stream().map(it -> CastMemberId.from(it.getId().getCastMemberId()))
+        getMembers().stream().map(it -> CastMemberId.from(it.getId().getCastMemberId()))
             .collect(Collectors.toSet()));
   }
 

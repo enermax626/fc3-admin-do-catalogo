@@ -77,7 +77,7 @@ public class CategoryE2ETest {
     CategoryId categoryId1 = givenACategory(expectedName, expectedDescription, expectedIsActive);
     CategoryId categoryId2 = givenACategory(expectedName2, expectedDescription2, expectedIsActive2);
 
-    var responseBody = mvc.perform(get("/categories"))
+    var responseBody = mvc.perform(get("/category"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.items").isArray())
         .andExpect(jsonPath("$.items").isNotEmpty())
@@ -88,7 +88,7 @@ public class CategoryE2ETest {
   private CategoryId givenACategory(String name, String description, Boolean isActive)
       throws Exception {
 
-    MvcResult result = this.mvc.perform(post("/categories")
+    MvcResult result = this.mvc.perform(post("/category")
             .contentType(MediaType.APPLICATION_JSON)
             .content(
                 "{\"name\": \"" + name + "\", \"description\": \"" + description + "\", \"isActive\": "
@@ -104,7 +104,7 @@ public class CategoryE2ETest {
   }
 
   private CategoryApiOutput retrieveCategory(CategoryId categoryId) throws Exception {
-    var responseBody = mvc.perform(get("/categories/" + categoryId.getValue()))
+    var responseBody = mvc.perform(get("/category/" + categoryId.getValue()))
         .andExpect(status().isOk())
         .andReturn().getResponse().getContentAsString();
 

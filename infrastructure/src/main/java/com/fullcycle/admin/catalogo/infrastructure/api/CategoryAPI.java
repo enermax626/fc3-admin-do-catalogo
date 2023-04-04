@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@RequestMapping(value = "categories")
+@RequestMapping(value = "category")
 public interface CategoryAPI {
 
   @PutMapping(path = "{id}",

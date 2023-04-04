@@ -13,6 +13,12 @@ import com.fullcycle.admin.catalogo.ControllerTest;
 import com.fullcycle.admin.catalogo.application.video.create.CreateVideoCommand;
 import com.fullcycle.admin.catalogo.application.video.create.CreateVideoOutput;
 import com.fullcycle.admin.catalogo.application.video.create.CreateVideoUseCase;
+import com.fullcycle.admin.catalogo.application.video.delete.DeleteVideoUseCase;
+import com.fullcycle.admin.catalogo.application.video.media.get.GetMediaUseCase;
+import com.fullcycle.admin.catalogo.application.video.media.upload.UploadMediaUseCase;
+import com.fullcycle.admin.catalogo.application.video.retrieve.get.GetVideoUseCase;
+import com.fullcycle.admin.catalogo.application.video.retrieve.list.ListVideoUseCase;
+import com.fullcycle.admin.catalogo.application.video.update.UpdateVideoUseCase;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMember;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberId;
 import com.fullcycle.admin.catalogo.domain.castmember.CastMemberType;
@@ -49,6 +55,18 @@ class VideoAPITest {
 
   @MockBean
   private CreateVideoUseCase createVideoUseCase;
+  @MockBean
+  private GetVideoUseCase getVideoUseCase;
+  @MockBean
+  private UpdateVideoUseCase updateVideoUseCase;
+  @MockBean
+  private DeleteVideoUseCase deleteVideoUseCase;
+  @MockBean
+  private ListVideoUseCase listVideoUseCase;
+  @MockBean
+  private GetMediaUseCase getMediaUseCase;
+  @MockBean
+  private UploadMediaUseCase uploadMediaUseCase;
 
   @Test
   public void givenAValidCommand_whenCallCreateFull_shouldReturnAnId() throws Exception {

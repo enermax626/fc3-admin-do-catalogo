@@ -55,8 +55,8 @@ public class DefaultUpdateVideoUseCase extends UpdateVideoUseCase {
     final var rating = Rating.of(input.rating()).orElse(null);
     final var launchedAt = input.launchedAt() != null ? Year.of(input.launchedAt()) : null;
     final var categories = toIdentifier(input.categories(), CategoryId::from);
-    final var genres = toIdentifier(input.categories(), GenreId::from);
-    final var members = toIdentifier(input.categories(), CastMemberId::from);
+    final var genres = toIdentifier(input.genres(), GenreId::from);
+    final var members = toIdentifier(input.members(), CastMemberId::from);
 
     Video aVideo = this.videoGateway.findById(anId).orElseThrow(notFoundException(anId));
 
@@ -134,7 +134,7 @@ public class DefaultUpdateVideoUseCase extends UpdateVideoUseCase {
       String missingIdsText = missingIds.stream().map(Identifier::getValue)
           .collect(Collectors.joining(","));
       notification.append(new Error(
-          "Some categories were not found. Aggregate:%s ids: %s".formatted(aggregateName,
+          "Some %s were not found. ids: %s".formatted(aggregateName,
               missingIdsText)));
     }
     return notification;

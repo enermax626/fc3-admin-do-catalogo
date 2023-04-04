@@ -16,10 +16,10 @@ public record GenreListOutput(
 
   public static GenreListOutput from(final Genre genre) {
     return new GenreListOutput(
-        genre.getId().toString(),
+        genre.getId().getValue(),
         genre.getName(),
         genre.getIsActive(),
-        genre.getCategories().stream().map(CategoryId::toString).toList(),
+        genre.getCategories().stream().map(CategoryId::getValue).toList(),
         genre.getCreatedAt(),
         genre.getDeletedAt()
     );

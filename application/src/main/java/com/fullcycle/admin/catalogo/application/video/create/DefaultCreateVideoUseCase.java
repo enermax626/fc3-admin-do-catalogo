@@ -48,8 +48,8 @@ public class  DefaultCreateVideoUseCase extends
   public CreateVideoOutput execute(CreateVideoCommand input) {
 
     final var categories = toIdentifier(input.categories(), CategoryId::from);
-    final var genres = toIdentifier(input.categories(), GenreId::from);
-    final var members = toIdentifier(input.categories(), CastMemberId::from);
+    final var genres = toIdentifier(input.genres(), GenreId::from);
+    final var members = toIdentifier(input.members(), CastMemberId::from);
 
     final var notification = Notification.create();
     notification.append(validateCategories(categories, categoryGateway::existsByIds));

@@ -1,12 +1,13 @@
 package com.fullcycle.admin.catalogo.infrastructure.video.persistence;
 
 import com.fullcycle.admin.catalogo.domain.video.ImageMedia;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity()
+@Entity
 @Table(name = "video_image_media")
 public class ImageMediaJpaEntity {
 
@@ -40,4 +41,21 @@ public class ImageMediaJpaEntity {
     return ImageMedia.with(id, id, name, filePath);
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ImageMediaJpaEntity that = (ImageMediaJpaEntity) o;
+    return Objects.equals(id, that.id) && Objects.equals(name, that.name)
+        && Objects.equals(filePath, that.filePath);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, filePath);
+  }
 }

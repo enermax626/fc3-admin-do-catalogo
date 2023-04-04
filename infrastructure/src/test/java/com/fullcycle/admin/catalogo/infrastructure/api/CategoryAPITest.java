@@ -83,7 +83,7 @@ public class CategoryAPITest {
     when(createCategoryUseCase.execute(any()))
         .thenReturn(API.Right(CreateCategoryOutput.from("123")));
 
-    final var request = post("/categories")
+    final var request = post("/category")
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(aCommand));
 
@@ -116,7 +116,7 @@ public class CategoryAPITest {
     when(createCategoryUseCase.execute(any()))
         .thenReturn(API.Left(Notification.create(new Error("'name' should not be null"))));
 
-    final var request = post("/categories")
+    final var request = post("/category")
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(aCommand));
 
@@ -152,7 +152,7 @@ public class CategoryAPITest {
     when(createCategoryUseCase.execute(any()))
         .thenThrow(DomainException.with(new Error("'name' should not be null")));
 
-    final var request = post("/categories")
+    final var request = post("/category")
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(aCommand));
 
@@ -188,7 +188,7 @@ public class CategoryAPITest {
     when(getCategoryByIdUseCase.execute(any()))
         .thenReturn(CategoryOutput.from(aCategory));
 
-    final var request = get("/categories/{id}", expectedId.getValue());
+    final var request = get("/category/{id}", expectedId.getValue());
 
     this.mvc.perform(request)
         .andDo(print())
@@ -218,7 +218,7 @@ public class CategoryAPITest {
     when(getCategoryByIdUseCase.execute(any()))
         .thenThrow(NotFoundException.with(Category.class, expectedId));
 
-    final var request = get("/categories/{id}", expectedId.getValue());
+    final var request = get("/category/{id}", expectedId.getValue());
 
     this.mvc.perform(request)
         .andDo(print())
@@ -239,7 +239,7 @@ public class CategoryAPITest {
 
     doNothing().when(deleteCategoryUseCase).execute(expectedId);
 
-    final var request = delete("/categories/{id}", expectedId);
+    final var request = delete("/category/{id}", expectedId);
 
     this.mvc.perform(request)
         .andDo(print())
@@ -265,7 +265,7 @@ public class CategoryAPITest {
     when(updateCategoryUseCase.execute(any()))
         .thenReturn(API.Right(UpdateCategoryOutput.from("123")));
 
-    final var request = put("/categories/{id}", expectedId)
+    final var request = put("/category/{id}", expectedId)
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(aCommand));
@@ -296,7 +296,7 @@ public class CategoryAPITest {
     when(updateCategoryUseCase.execute(any()))
         .thenThrow(NotFoundException.with(Category.class, CategoryId.from(expectedId)));
 
-    final var request = put("/categories/{id}", expectedId)
+    final var request = put("/category/{id}", expectedId)
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(aCommand));
@@ -330,7 +330,7 @@ public class CategoryAPITest {
     when(updateCategoryUseCase.execute(any()))
         .thenReturn(API.Left(Notification.create(new Error("invalid name"))));
 
-    final var request = put("/categories/{id}", expectedId)
+    final var request = put("/category/{id}", expectedId)
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(aCommand));
@@ -368,7 +368,7 @@ public class CategoryAPITest {
     when(listCategoriesUseCase.execute(any()))
         .thenReturn(new Pagination<>(expectedPage, expectedPerPage, expectedTotal, expectedItems));
 
-    final var request = get("/categories")
+    final var request = get("/category")
         .accept(MediaType.APPLICATION_JSON)
         .queryParam("page", String.valueOf(expectedPage))
         .queryParam("perPage", String.valueOf(expectedPerPage))

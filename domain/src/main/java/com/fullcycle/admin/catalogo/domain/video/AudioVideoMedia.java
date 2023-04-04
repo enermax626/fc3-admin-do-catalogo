@@ -6,7 +6,6 @@ import java.util.Objects;
 public class AudioVideoMedia extends ValueObject {
 
   private final String id;
-
   private final String checksum;
   private final String name;
   private final String rawLocation;

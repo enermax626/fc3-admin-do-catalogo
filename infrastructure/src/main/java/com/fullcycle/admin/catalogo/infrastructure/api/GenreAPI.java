@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@RequestMapping("/genres")
+@RequestMapping("/genre")
 @Tag(name = "Genre", description = "Genre API")
 public interface GenreAPI {
 
@@ -51,7 +52,7 @@ public interface GenreAPI {
   );
 
 
-  @Operation(summary = "List genres paginated")
+  @Operation(summary = "Get Genre by id")
   @ApiResponses({
       @ApiResponse(responseCode = "200", description = "Listed successfully"),
       @ApiResponse(responseCode = "422", description = "An invalid parameter was received"),
@@ -60,7 +61,7 @@ public interface GenreAPI {
   @GetMapping(value = "/{id}",
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  ResponseEntity<GenreApiOutput> getById(@RequestParam(name = "id") final String id);
+  ResponseEntity<GenreApiOutput> getById(@PathVariable(name = "id") final String id);
 
 
   @Operation(summary = "Update a category")
@@ -72,7 +73,7 @@ public interface GenreAPI {
   @PutMapping(path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<?> updateById(@RequestParam(name = "id") final String id,
+  ResponseEntity<?> updateById(@PathVariable(name = "id") final String id,
       @RequestBody UpdateGenreApiInput request);
 
   @Operation(summary = "Update a category")
@@ -82,6 +83,6 @@ public interface GenreAPI {
       @ApiResponse(responseCode = "500", description = "An internal server error has occurred")
   })
   @DeleteMapping(path = "/{id}")
-  void deleteById(@RequestParam(name = "id") final String id);
+  void deleteById(@PathVariable(name = "id") final String id);
 
 }

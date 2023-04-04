@@ -13,7 +13,7 @@ public record ListVideoOutput(String id, String title, String description, Insta
   }
 
   public static ListVideoOutput from(VideoPreview aVideo) {
-    return new ListVideoOutput(aVideo.id(), aVideo.title(), aVideo.description(),
+    return new ListVideoOutput(aVideo.id().toString(), aVideo.title(), aVideo.description(),
         aVideo.createdAt(), aVideo.updatedAt());
   }
 

@@ -14,6 +14,7 @@ import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.infrastructure.genre.persistence.GenreJpaEntity;
 import com.fullcycle.admin.catalogo.infrastructure.genre.persistence.GenreRepository;
 import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -77,7 +78,7 @@ public class GenreMySQLGatewayTest {
 
     final var expectedName = "Action";
     final var expectedIsActive = true;
-    final var expectedCategories = List.of(filmes.getId());
+    final var expectedCategories = Set.of(filmes.getId());
 
     final var aGenre = Genre.newGenre(expectedName, expectedIsActive);
     aGenre.addCategory(expectedCategories);
@@ -118,7 +119,7 @@ public class GenreMySQLGatewayTest {
 
     final var expectedName = "Action";
     final var expectedIsActive = true;
-    final var expectedCategories = List.of(filmes.getId());
+    final var expectedCategories = Set.of(filmes.getId());
 
     final var aGenre = Genre.newGenre(expectedName, expectedIsActive);
     aGenre.addCategory(expectedCategories);
@@ -135,10 +136,9 @@ public class GenreMySQLGatewayTest {
     assertEquals(aGenre.getUpdatedAt(), actualGenre.getUpdatedAt());
     assertEquals(aGenre.getDeletedAt(), actualGenre.getDeletedAt());
     assertNull(actualGenre.getDeletedAt());
-
+    Thread.sleep(500);
     actualGenre.update("Action Updated", actualGenre.getIsActive(), actualGenre.getCategories());
 
-    Thread.sleep(150);
     Genre updatedGenre = genreGateway.update(actualGenre);
 
     assertEquals(actualGenre.getName(), updatedGenre.getName());

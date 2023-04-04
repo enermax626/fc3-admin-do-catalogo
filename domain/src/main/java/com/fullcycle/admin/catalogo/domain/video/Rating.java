@@ -23,6 +23,6 @@ public enum Rating {
   }
 
   public static Optional<Rating> of(String label) {
-    return Arrays.stream(Rating.values()).filter(r -> r.name.equals(label)).findFirst();
+    return Arrays.stream(Rating.values()).filter(r -> r.name().equals(label)).findFirst();
   }
 }
