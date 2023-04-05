@@ -54,7 +54,7 @@ jobs:
           uses: gradle/wrapper-validation-action@1.0.6
         #4. Executar build da aplicação
         - name: Build da aplicacao
-          run: gradle/gradle-build.action@2.4.0
+          uses: gradle/gradle-build.action@2.4.0
           with:
             arguments: clean build -x test
         #5. Definir a variavel branch name
