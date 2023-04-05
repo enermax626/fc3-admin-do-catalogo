@@ -3,7 +3,8 @@ version: '3.7'
 services:
   app:
     container_name: adm_videos_app
-    build: .
+#    build: .
+    image: enermax626/fc3-admin-do-catalogo:master-4
     profiles: ["app"]
     restart: unless-stopped
     env_file:
@@ -42,6 +43,22 @@ services:
       - "5672:5672"
     networks:
       - adm_videos_network
+
+  keycloak:
+    container_name: adm_videos_keycloak
+    image: quay.io/keycloak/keycloak:20.0.3
+    environment:
+        - KEYCLOAK_USER=admin
+        - KEYCLOAK_PASSWORD=admin
+    ports:
+      - "8443:8080"
+    command:
+      - start-dev
+    networks:
+      - adm_videos_network
+
+
+
 
 networks:
   adm_videos_network:

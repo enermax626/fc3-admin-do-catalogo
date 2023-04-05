@@ -11,7 +11,7 @@ spring:
       ddl-auto: none
 
 amqp:
-  host: ${AMQP_HOST}
-  port: ${AMQP_PORT}
-  username: ${AMQP_USERNAME}
-  password: ${AMQP_PASSWORD}
+  host: ${AMQP_HOST:localhost}
+  port: ${AMQP_PORT:5672}
+  username: ${AMQP_USERNAME:admin_videos}
+  password: ${AMQP_PASSWORD:123456}

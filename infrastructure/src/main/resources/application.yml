@@ -34,10 +34,18 @@ amqp:
 logging:
   level:
     ROOT: INFO
+#    io:
+#      undertow: DEBUG
+#    org:
+#      springframework:
+#        boot:
+#          web:
+#            embedded:
+#              undertow: DEBUG°
     com.fullcycle.admin.catalogo: DEBUG
 
 server:
-  port: 8080
+  port: 8081
   servlet:
     context-path: /api
   compression:
@@ -50,6 +58,8 @@ server:
       io: 4
 
 spring:
+  profiles:
+    active: production
   datasource:
     url: jdbc:mysql://${mysql.url}/${mysql.schema}?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
     username: ${mysql.username}
