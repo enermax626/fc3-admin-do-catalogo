@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 @Inherited
 @ActiveProfiles("test-integration")
 @SpringBootTest(classes = WebServerConfig.class )
+@ExtendWith(MySQLCleanUpExtension.class)
 public @interface AmqpTest {
 
 }

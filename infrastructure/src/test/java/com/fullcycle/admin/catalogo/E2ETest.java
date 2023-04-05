@@ -6,6 +6,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test-e2e")
 @SpringBootTest(classes = WebServerConfig.class )
 @ExtendWith(MySQLCleanUpExtension.class)
+@Tag("e2eTest")
 public @interface E2ETest {
 
 }
