@@ -49,12 +49,12 @@ jobs:
           with:
             java-version: 17
             distribution: 'adopt'
-        #3. Valida a existencia do gradle wrapper
-        - name: Validate Gradle Wrapper
-          uses: gradle/wrapper-validation-action@1.0.6
-        #4. Executar build da aplicação
-        - name: Build da aplicacao
-          uses: gradle/gradle-build.action@2.4.0
+      # 3. Valida a existência do gradle wrapper
+        - name: Validate Gradle wrapper
+          uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      # 4. Realizar o build para gerar o artefato final
+        - name: Build da aplicação
+          uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
           with:
             arguments: clean build -x test
         #5. Definir a variavel branch name
