@@ -11,6 +11,8 @@ spring:
       ddl-auto: none
 
 amqp:
+  admin:
+    auto-create: true #This will create the exchange and queues if they don't exist.
   host: ${AMQP_HOST:localhost}
   port: ${AMQP_PORT:5672}
   username: ${AMQP_USERNAME:admin_videos}
