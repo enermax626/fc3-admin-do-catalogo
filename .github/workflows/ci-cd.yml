@@ -82,4 +82,5 @@ jobs:
             build-args: |
               VERSION=${{ env.BUILD_TAG }}
             tags: |
-                ${{ env.IMAGE_NAME }}:${{ env.BUILD_TAG }}
+              ${{ env.IMAGE_NAME }}:${{ env.BUILD_TAG }}
+              ${{ env.IMAGE_NAME }}:latest
